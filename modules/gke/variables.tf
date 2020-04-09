@@ -12,3 +12,5 @@ variable "services_machine_type" {}
 variable "services_disk_size_gb" {}
 variable "services_min_node_count" {}
 variable "services_max_node_count" {}
+
+variable "vpc_network" {}

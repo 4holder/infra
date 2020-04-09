@@ -6,6 +6,8 @@ resource "google_container_cluster" "gke" {
     "${var.gcloud_region}-a"
   ]
 
+  network = var.vpc_network
+
   initial_node_count = 1
   remove_default_node_pool = true
 

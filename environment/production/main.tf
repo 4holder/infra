@@ -28,6 +28,13 @@ provider "google" {
   region      = var.region
 }
 
+module "cluster_vpc" {
+  source                      = "./../../modules/vpc"
+  gcloud_project_id           = var.gcloud_project_id
+  gcloud_region               = var.region
+  credentials_file            = var.credentials_file
+}
+
 module "gke_cluster" {
   source                      = "./../../modules/gke"
   gke_cluster_name            = var.cluster_name
@@ -43,5 +50,7 @@ module "gke_cluster" {
   services_machine_type       = var.np_services_machine_type
   services_min_node_count     = var.np_services_min_node_count
   services_max_node_count     = var.np_services_max_node_count
+
+  vpc_network                 = module.cluster_vpc.for_holder_production_vpc_network
 }
 
