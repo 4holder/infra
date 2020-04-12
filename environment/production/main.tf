@@ -14,6 +14,9 @@ variable "np_services_initial_node_count" {}
 variable "np_services_min_node_count" {}
 variable "np_services_max_node_count" {}
 
+variable "zone_name" {}
+variable "dns_name" {}
+
 terraform {
   backend "gcs" {
     bucket      = "infra_production_terraform"
@@ -54,3 +57,12 @@ module "gke_cluster" {
   vpc_network                 = module.cluster_vpc.for_holder_production_vpc_network
 }
 
+module "for_holder_com_zone" {
+  source            = "./../../modules/gcp_zone"
+  credentials_file  = var.credentials_file
+  gcloud_project_id = var.gcloud_project_id
+  gcloud_region     = var.region
+
+  zone_name         = var.zone_name
+  dns_name          = var.dns_name
+}

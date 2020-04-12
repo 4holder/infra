@@ -17,3 +17,11 @@ output "endpoint" {
   value = module.gke_cluster.endpoint
   sensitive = true
 }
+
+output "dns_zone" {
+  value = module.for_holder_com_zone.dns_zone
+}
+
+output "zone_name" {
+  value = module.for_holder_com_zone.zone_name
+}
