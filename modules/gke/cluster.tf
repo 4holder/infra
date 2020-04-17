@@ -20,7 +20,7 @@ resource "google_container_cluster" "gke" {
 
   addons_config {
     http_load_balancing {
-      disabled = true
+      disabled = false
     }
 
     horizontal_pod_autoscaling {
